@@ -13,14 +13,17 @@ dbConnection(URL);
 
 // Routes Import
 const authRoutes = require('./routes/auth');
+const productRoutes = require('./routes/private/admin/products')
 const globalErrorHandler = require('./middlewares/globalErrorHandler');
 
 // Middle Ware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+
 // Routes
 app.use('/auth', authRoutes)
+app.use('/products', productRoutes)
 
 app.use(globalErrorHandler)
 
