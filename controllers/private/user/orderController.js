@@ -74,6 +74,8 @@ async function addOrder(req, res, next) {
     }
 }
 
+//  Working on This it is not funtional correctly as i need to work for
+//  checkexisting products quantity with the products quantity which is already in the orderModel. 
 async function updateOrder(req, res, next) {
     try {
 
