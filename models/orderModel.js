@@ -35,7 +35,16 @@ const orderSchema = mongoose.Schema({
             type: String,
             required: [true, "Address is required."]
         },
+    },
+    orderStatus: {
+        type: String,
+        default: 'Pending',
+        enum: ['Pending', 'Processed', 'Shipped', 'Delivered', 'Cancelled']
     }
 }, {
     timestamps: true
 })
+
+const orderModel = new mongoose.model('Order', orderSchema)
+
+module.exports = orderModel
