@@ -1,4 +1,4 @@
-const productModel = require("../../models/productModel");
+const productModel = require("../../models/product");
 
 async function addProduct(req, res, next) {
   try {
@@ -43,7 +43,7 @@ async function addProduct(req, res, next) {
 
     const createProduct = await productModel.create(product);
 
-    await createProduct.populate('createdBy').populate('categoryIds')
+    await createProduct.populate("createdBy").populate("categoryIds");
 
     if (createProduct) {
       res
@@ -96,7 +96,7 @@ async function updateProduct(req, res) {
 
     const createProduct = await productModel.create(product);
 
-    await createProduct.populate('createdBy').populate('categoryIds')
+    await createProduct.populate("createdBy").populate("categoryIds");
 
     if (createProduct) {
       return res
@@ -112,7 +112,10 @@ async function deleteProduct(req, res) {}
 
 async function getAllProducts(req, res, next) {
   try {
-    const data = await productModel.find().populate('categoryIds').populate('createdBy');
+    const data = await productModel
+      .find()
+      .populate("categoryIds")
+      .populate("createdBy");
     if (data) {
       return res
         .status(200)
