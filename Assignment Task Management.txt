@@ -1,0 +1,58 @@
+
+Assignment 
+Advanced Task Management
+
+USECASE
+
+1. User can create a project with the title and description.
+2. User can add section / columns in the project
+3. User can add task in the section with the task title, description and asign to user by selecting due date with the status (Pending, Inprogress, Completed, Closed).
+4. User can add user and also select the user role as (Designer, Developer, Video Editor, Content Creator)
+
+SCOPE
+    - Project
+        - Create Section / Columns
+            - Task
+                - Asign User + add new user
+                    - User can change status, asign task to other users and able to change section of the task
+
+Data Scope of each module
+
+$_Project
+    - ID (autogen)
+    - Title (String)
+    - Description (String)
+    - projectCreatedBy (userId)
+    - Due Date 
+    - Project Status - [ It should keep all logs in database with the date, status and User who updates the status. ]
+
+$_Section
+    - ID (autogen)
+    - Title (String)
+    - Description (String)
+    - createdBy
+    - timeStamp
+
+$_Task
+    - ID (autogen)
+    - Title (String)
+    - Description (String)
+    - createdBy (Date)
+    - userAssigned (User)
+    - status (Pending, Inprogress, Completed, Closed)
+    - dueDate (Date)
+
+(OPTIONAL) OUT OF SCOPE
+$_Add_User
+    - ID (autogen)
+    - firstName
+    - lastName
+    - email
+    - phone
+    - gender
+    - role
+    - password Default (User-BQ-ATM)
+
+(OPTIONAL) OUT OF SCOPE
+$_User_Change_password
+    - After login user can change his password
