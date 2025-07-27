@@ -1,35 +1,6 @@
 const mongoose = require("mongoose");
 const orderStatus = require("../enums/orderStatus");
 
-const orderSchema = mongoose.Schema(
-  {
-    orderBy: {
-      userId: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
-    shippingDetails: {
-      name: String,
-      phone: String,
-      email: String,
-      country: String,
-      city: String,
-      zipCode: String,
-      address: String,
-      notes: String,
-    },
-    status: {
-      type: String,
-      default: orderStatus.Pending,
-      enum: Object.values(orderStatus),
-    },
-  },
-  {
-    timestamps: true,
-  }
-);
-
-const mongoose = require('mongoose')
-
 const orderSchema = mongoose.Schema({
     orderBy: {
         type: mongoose.Schema.Types.ObjectId,
@@ -66,11 +37,11 @@ const orderSchema = mongoose.Schema({
             required: [true, "Address is required."]
         },
     },
-    orderStatus: {
-        type: String,
-        default: 'Pending',
-        enum: ['Pending', 'Processed', 'Shipped', 'Delivered', 'Cancelled']
-    }
+    status: {
+      type: String,
+      default: orderStatus.Pending,
+      enum: Object.values(orderStatus),
+    },
 }, {
     timestamps: true
 })
