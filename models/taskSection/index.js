@@ -10,6 +10,10 @@ const sectionSchema = mongoose.Schema(
       type: String,
       required: [true, "Description is required."],
     },
+    position: {
+      type: Number,
+      default: 0,
+    },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
