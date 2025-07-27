@@ -11,16 +11,26 @@ const PORT = process.env.PORT
 // DB Connection
 dbConnection(URL);
 
-// Routes Import
-const authRoutes = require('./routes/auth');
-const globalErrorHandler = require('./middlewares/globalErrorHandler');
-
 // Middle Ware
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
+
+// Routes Import
+const authRoutes = require('./routes/auth');
+const productRoutes = require('./routes/product')
+const categoryRoutes = require('./routes/category')
+const globalErrorHandler = require('./middlewares/globalErrorHandler');
+
 // Routes
 app.use('/auth', authRoutes)
+app.use('/product', productRoutes)
+app.use('/category', categoryRoutes)
+
+app.use('/', (req, res)=>{
+    res.send(`Server is running.`)
+})
+
 
 app.use(globalErrorHandler)
 
