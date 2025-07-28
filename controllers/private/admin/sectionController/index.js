@@ -2,11 +2,15 @@ const sectionModel = require("../../../../models/taskSection");
 
 async function addNewSection(req, res, next) {
   try {
-    const { title, description, createdBy } = req.body;
+    const { title,
+      description,
+      position,
+      createdBy, } = req.body;
 
     const section = {
       title,
       description,
+      position,
       createdBy,
     };
 
@@ -29,14 +33,17 @@ async function addNewSection(req, res, next) {
 async function updateSection(req, res, next) {
   try {
     const sectionId = req.params.id;
-    const { title, description, createdBy } = req.body;
+    const { title,
+      description,
+      position,
+      createdBy, } = req.body;
 
     const section = {
       title,
       description,
+      position,
       createdBy,
     };
-
     const data = await sectionModel.findByIdAndUpdate(sectionId, section, {
       new: true,
     });
@@ -62,11 +69,11 @@ async function deleteSection(req, res, next) {
     const data = await sectionModel.findByIdAndDelete(sectionId);
 
     if (data) {
-      res
+      return res
         .status(200)
         .json({ status: 200, msg: "Section is deleted.", data: data });
     } else {
-      res
+      return res
         .status(400)
         .json({ status: 400, msg: "Section is not deleted.", data: null });
     }

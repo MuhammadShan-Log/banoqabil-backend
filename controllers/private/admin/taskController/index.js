@@ -2,7 +2,15 @@ const taskModel = require("../../../../models/task");
 
 async function addNewTask(req, res, next) {
   try {
-    const { title, description, createdBy, userAssigned, status, dueDate } =
+    const { title,
+      description,
+      createdBy,
+      userAssigned,
+      sectionId,
+      projectId,
+      status,
+      priority,
+      dueDate } =
       req.body;
 
     const task = {
@@ -10,8 +18,11 @@ async function addNewTask(req, res, next) {
       description,
       createdBy,
       userAssigned,
+      sectionId,
+      projectId,
       status,
-      dueDate,
+      priority,
+      dueDate
     };
 
     const data = await taskModel.create(task);
@@ -31,16 +42,28 @@ async function addNewTask(req, res, next) {
 async function updateTask(req, res, next) {
   try {
     const taskId = req.params.id;
-    const { title, description, userAssigned, status, dueDate } = req.body;
+    const { title,
+      description,
+      createdBy,
+      userAssigned,
+      sectionId,
+      projectId,
+      status,
+      priority,
+      dueDate } =
+      req.body;
 
     const task = {
       title,
       description,
+      createdBy,
       userAssigned,
+      sectionId,
+      projectId,
       status,
-      dueDate,
+      priority,
+      dueDate
     };
-
     const data = await taskModel.findByIdAndUpdate(taskId, task, { new: true });
 
     if (data) {
@@ -81,7 +104,11 @@ async function getTaskById(req, res, next) {
   try {
     const taskId = req.params.id;
 
-    const data = await taskModel.findById(taskId).populate('createdBy').populate('userAssigned');
+    const data = await taskModel.findById(taskId)
+      .populate('createdBy')
+      .populate('userAssigned')
+      .populate('sectionId')
+      .populate('projectId');
 
     if (data) {
       res
@@ -98,9 +125,13 @@ async function getTaskById(req, res, next) {
 }
 
 async function getAllTasks(req, res, next) {
-  try {    
+  try {
 
-    const data = await taskModel.find().populate('createdBy').populate('userAssigned');
+    const data = await taskModel.find()
+      .populate('createdBy')
+      .populate('userAssigned')
+      .populate('sectionId')
+      .populate('projectId');
 
     if (data) {
       res

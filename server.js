@@ -16,7 +16,9 @@ const authRoutes = require("./routes/auth");
 const productRoutes = require("./routes/private/admin/products");
 const orderRoutes = require("./routes/private/user/orderRoutes");
 const userRoutes = require("./routes/private/admin/userRoutes");
-const taskRoutes = require("./routes/task");
+const projectRoutes = require('./routes/project');
+const sectionRoutes = require("./routes/section");
+const taskRoutes = require('./routes/task');
 const globalErrorHandler = require("./middlewares/globalErrorHandler");
 
 // Middle Ware
@@ -28,6 +30,10 @@ app.use("/auth", authRoutes);
 app.use("/products", productRoutes);
 app.use("/orders", orderRoutes);
 app.use("/users", userRoutes);
+
+// Assignment
+app.use("/project", projectRoutes);
+app.use("/section", sectionRoutes);
 app.use("/task", taskRoutes);
 
 app.use(globalErrorHandler);

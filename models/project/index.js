@@ -1,12 +1,14 @@
 const mongoose = require("mongoose");
 
 const projectStatus = require("../../enums/projectStatus");
+const { unitToPixels } = require("puppeteer");
 
 const projectSchema = mongoose.Schema(
   {
     title: {
       type: String,
       required: [true, "Title is required."],
+      unique: true,
     },
     description: {
       type: String,
@@ -14,6 +16,7 @@ const projectSchema = mongoose.Schema(
     },
     projectCreatedBy: {
       type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
       required: [true, "User Id is required to create the project."],
     },
     dueDate: {

@@ -8,6 +8,7 @@ const taskSchema = mongoose.Schema(
     title: {
       type: String,
       required: [true, "Title is required."],
+
     },
     description: {
       type: String,
@@ -27,25 +28,25 @@ const taskSchema = mongoose.Schema(
       required: [true, "User is required in order to assign the task."],
       ref: "User",
     },
-    sectionId:{
-      type:mongoose.Schema.Types.ObjectId,
-      ref:'taskSection',
-      required:[true, "Section id is required."],
+    sectionId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'taskSection',
+      required: [true, "Section id is required."],
     },
-    projectId:{
-      type:mongoose.Schema.Types.ObjectId,
-      ref:'Project',
-      required:[true, "Project id is required."],
+    projectId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Project',
+      required: [true, "Project id is required."],
     },
     status: {
       type: String,
       enum: Object.values(taskStatus),
       default: taskStatus.ToDo,
     },
-    priority:{
-      type:String,
-      enum:Object.values(taskPriority),
-      default:taskPriority.Low
+    priority: {
+      type: String,
+      enum: Object.values(taskPriority),
+      default: taskPriority.Low
 
     },
     dueDate: {
